@@ -1,0 +1,80 @@
+Programa 4: Crear un arreglo de n posiciones y llenar un arreglo con números randomicos e imprimir un reporte solo con los números de las posiciones pares 
+y otro reporte de los números de lasposiciones impares.
+
+package arreglodepareseimpares;
+import javax.swing.JOptionPane;
+
+public class ArregloDeParesEImpares {
+    
+    public static void llenarArreglo(int[] arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            arreglo[i] = (int)(Math.random() * 100);
+        }
+    }
+    
+    public static int contarPares(int[] arreglo){
+        int contadorPares = 0;
+        
+        for (int i = 0; i < arreglo.length; i++) {
+            if(arreglo[i] % 2 == 0){
+                contadorPares++;
+            }
+        }
+        return contadorPares;
+    }
+    
+    public static int contarImpares(int[] arreglo){
+        int contadorImpares = 0;
+        
+        for (int i = 0; i < arreglo.length; i++) {
+            if(arreglo[i] % 2 != 0){
+                contadorImpares++;
+            }
+        }
+        return contadorImpares;
+    }
+    
+    public static String imprimirArreglo(int[] arreglo){
+        String arregloCadena = "";
+        
+        for (int i = 0; i < arreglo.length; i++) {
+            arregloCadena += arreglo[i]+" ";
+        }
+        return arregloCadena;
+    }
+
+    public static void main(String[] args) {
+        int elementos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos elementos desea?"));
+        
+        while(elementos <= 0){
+            elementos = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un valor mayor que 0 por favor"));
+        }
+        
+        int[] numeros = new int[elementos];
+        llenarArreglo(numeros);
+        System.out.print("Arreglo principal\n"+imprimirArreglo(numeros)+"\n");
+        
+        int pares = contarPares(numeros);
+        int impares = contarImpares(numeros);
+        
+        int indexPar = 0, indexImpar = 0;
+        
+        int[] pares2 = new int[pares];
+        int[] impares2 = new int[impares];
+        
+        for (int i = 0; i < elementos; i++) {
+            if(numeros[i] % 2 == 0){
+                pares2[indexPar] = numeros[i];
+                indexPar++;
+            }
+            
+            if(numeros[i] % 2 != 0){
+                impares2[indexImpar] = numeros[i];
+                indexImpar++;
+            }
+        }
+        
+        System.out.print("Arreglo con pares\n"+imprimirArreglo(pares2)+"\n");
+        System.out.print("Arreglo con impares\n"+imprimirArreglo(impares2));
+    }   
+}
