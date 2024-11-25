@@ -1,0 +1,22 @@
+Programa 3: Crear un arreglo de n posiciones y llenarlo con los múltiplos de un número en particular, imprimir su resultado. 
+
+package multiplos;
+import javax.swing.JOptionPane;
+
+public class Multiplos {
+
+    public static void main(String[] args) {
+        int numero = Integer.parseInt(JOptionPane.showInputDialog("Ingrese que numero desea obtener sus multiplos"));
+        int elementos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos elementos desea que hayan en el arreglo?"));
+        
+        int[] arreglo = new int [elementos];
+        
+        for (int i = 0; i < elementos; i++) {
+            arreglo[i] = numero * (i + 1);
+        }
+        
+        for (int i = 0; i < elementos; i++) {
+            System.out.print(arreglo[i]+" ");
+        }
+    }    
+}
