@@ -1,0 +1,39 @@
+Programa 5: Implemento un programa de Java que me permita eliminar un elemento de un arreglo
+
+package eliminarelementos;
+import javax.swing.JOptionPane;
+
+public class EliminarElementos {
+    
+    public static void imprimirArreglo(int[] arreglo, int longitud){
+        for (int i = 0; i < longitud; i++) {
+            System.out.print(arreglo[i]+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        int[]arreglo = {1,2,3,4,5};       
+        int longitud = arreglo.length;       
+        int posicion;
+        
+        posicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el elemento a eliminar (0 - "+(longitud-1)+")"));
+        
+        while(posicion < 0 || posicion >= longitud){
+            posicion = Integer.parseInt(JOptionPane.showInputDialog("Por favor, seleccione uno de los elementos disponibles (0 - "+(longitud-1)+")"));
+        }
+        
+        System.out.println("Arreglo antes de eliminar un elemento");
+        imprimirArreglo(arreglo, longitud);
+        
+        for (int i = posicion; i < longitud-1; i++) {
+            arreglo[i] = arreglo[i+1];
+        }
+        
+        longitud--;
+        
+        System.out.println("\nArreglo despues de eliminar un elemento");
+        imprimirArreglo(arreglo, longitud);
+    }    
+}
+
+Nota: el programa no elimina el elemento tal cual, simplemente lo desplaza hasta la última posicion y lo ignora al momento de imprimir el arreglo
