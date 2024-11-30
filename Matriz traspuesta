@@ -1,0 +1,62 @@
+Programa 6: Calcular la traspuesta de una matriz
+
+package matriztraspuesta;
+import javax.swing.JOptionPane;
+
+public class MatrizTraspuesta {
+    
+    public static void llenarMatriz(int[][] matriz){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                matriz[i][j] = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el elemento en ["+i+"]["+j+"]"));
+            }
+        }
+    }
+    
+    public static void obtenerTraspuesta(int[][] matriz, int[][] traspuesta){
+        for (int i = 0; i < traspuesta.length; i++) {
+            for (int j = 0; j < traspuesta[i].length; j++) {
+                traspuesta[i][j] = matriz[j][i];
+            }
+        }
+    }
+    
+    public static void imprimirMatriz(int[][] matriz){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.printf("%3d",matriz[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+    
+    public static boolean validacion(int elemento){
+        return elemento > 0;
+    }
+
+    public static void main(String[] args) {
+        
+        int filas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de filas"));
+        
+        while(!validacion(filas)){
+            filas = Integer.parseInt(JOptionPane.showInputDialog("Por favor, ingrese una cantidad válida"));
+        }
+        
+        int columnas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de columnas"));
+        
+        while(!validacion(columnas)){
+            columnas = Integer.parseInt(JOptionPane.showInputDialog("Por favor, ingrese una cantidad válida"));
+        }
+        
+        int[][] matriz = new int [filas][columnas];
+        int[][] traspuesta = new int [columnas][filas];
+        
+        llenarMatriz(matriz);
+        obtenerTraspuesta(matriz, traspuesta);
+        
+        System.out.print("Matriz original\n");
+        imprimirMatriz(matriz);
+        System.out.print("Matriz traspuesta\n");
+        imprimirMatriz(traspuesta);
+    }    
+}
