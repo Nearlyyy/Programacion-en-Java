@@ -1,4 +1,4 @@
-Programa 13: Implementar un programa de Java que halle el maximo valor en un arreglo
+Programa 7: Implementar un programa de Java que halle el maximo valor en un arreglo
 
 package encontrarvalormaximo;
 import javax.swing.JOptionPane;
