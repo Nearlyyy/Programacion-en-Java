@@ -1,0 +1,92 @@
+Programa 8: Implementacion de un calendario simple 
+
+package calendario;
+
+import javax.swing.JOptionPane;
+
+public class Calendario {
+    
+    public static boolean esBisiesto(int año){
+        return (año % 4 == 0) && (año % 100 != 0 || año % 400 == 0);
+    }
+    
+    public static int hallarDiasDelMes(int mes, int año) {
+        switch (mes){
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                return 31;
+                
+            case 4: case 6: case 9: case 11:
+                return 30;
+                
+            case 2:
+                if(esBisiesto(año)){
+                    return 29;
+                } else {
+                    return 28;
+                }
+                
+            default:
+                return -1;               
+        }
+    }
+    
+    public static void llenarCalendario(int[][] calendario, int mes, int año){
+        int dia = 1;
+        for (int i = 0; i < calendario.length; i++) {
+            for (int j = 0; j < calendario[i].length; j++) {
+                if(dia <= hallarDiasDelMes(mes, año)){
+                    calendario[i][j] = dia;
+                    dia++;
+                }
+            }
+        }
+    }
+    
+    public static void imprimirCalendario(int[][] calendario, int mes, int año){
+        System.out.println(convertirNumeroAMes(mes)+" "+año);
+        
+        for (int i = 0; i < calendario.length; i++) {
+            for (int j = 0; j < calendario[i].length; j++) {
+                if(calendario[i][j] == 0){
+                    System.out.print("");
+                } else { 
+                    System.out.printf("%3d",calendario[i][j]);
+                }
+            }
+            System.out.println("");
+        }
+    }
+    
+    public static String convertirNumeroAMes(int mes){
+        switch (mes){
+            case 1: return "Enero";
+            case 2: return "Febrero";
+            case 3: return "Marzo";
+            case 4: return "Abril";
+            case 5: return "Mayo";
+            case 6: return "Junio";
+            case 7: return "Julio";
+            case 8: return "Agosto";
+            case 9: return "Septiembre";
+            case 10: return "Octubre";
+            case 11: return "Noviembre";
+            case 12: return "Diciembre";
+            default: return "";
+        }
+    }
+    
+
+    public static void main(String[] args) {
+        int[][] calendario = new int[5][7];
+        
+        int mes = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un mes"
+                + "\n1. Enero\n2. Febrero\n3. Marzo\n4. Abril\n5. Mayo\n6. Junio\n7. Julio"
+                + "\n8. Agosto\n9. Septiembre\n10. Octubre\n11. Noviembre\n12. Diciembre"));
+        int año = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un año"));
+        
+        int diasMaximos = hallarDiasDelMes(mes, año);
+        
+        llenarCalendario(calendario, mes, año);
+        imprimirCalendario(calendario, mes, año);
+    }    
+}
