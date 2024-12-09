@@ -1,0 +1,51 @@
+Programa 12: Rotar una matriz 90°
+
+Implementar un programa de Java que rote una matriz 90° en sentido horario
+
+package matrizrotativa;
+import java.util.Scanner;
+
+public class MatrizRotativa {
+    
+    public static void rotarMatriz(int[][] rotativa, int[][] original){
+        int n = rotativa.length, col;
+        for (int i = 0; i < n; i++) {
+            col = n - 1;
+            for (int j = 0; j < n; j++) {
+                rotativa[j][col - i] = original[i][j];
+            }
+        }
+    }
+    
+    public static void imprimirMatriz(int[][] matriz){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.printf("%3d",matriz[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese el valor de n: ");
+        int n = sc.nextInt();
+        
+        int[][] original = new int[n][n];
+        int[][] rotativa = new int[n][n];
+        
+        for (int i = 0; i < original.length; i++) {
+            for (int j = 0; j < original[i].length; j++) {
+                System.out.print("Ingrese el valor del elemento ["+i+"]["+j+"]: ");
+                original[i][j] = sc.nextInt();
+            }
+        }
+        
+        System.out.println("Matriz original: \n");
+        imprimirMatriz(original);
+        System.out.println("\nMatriz rotada 90°: \n");
+        rotarMatriz(rotativa, original);
+        imprimirMatriz(rotativa);
+    }   
+}
