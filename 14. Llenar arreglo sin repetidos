@@ -1,0 +1,52 @@
+Programa 14: Llenar un arreglo sin repetir valores
+
+package arreglosinrepetidos;
+import java.util.Scanner;
+
+public class ArregloSinRepetidos {
+    
+    public static boolean verificarRepetido(int[] numeros, int digito){
+        for (int i = 0; i < numeros.length; i++) {
+            if(digito == numeros[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static int generarAleatorio(int longitud){
+        return (int)(Math.random()*longitud)+1;
+    }
+    
+    public static void llenarArregloSinRepetidos(int[] numeros){
+        int longitud = numeros.length;
+        
+        for (int i = 0; i < longitud; i++) {
+            int digito = generarAleatorio(longitud);
+            
+            while(verificarRepetido(numeros, digito)){
+                digito = generarAleatorio(longitud);
+            }
+            
+            numeros[i] = digito;
+        }
+    }
+    
+    public static void imprimirArreglo(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.printf("%3d",numeros[i]);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese el tamaño del arreglo: ");
+        int n = sc.nextInt();
+        
+        int[] numeros = new int[n];
+        
+        llenarArregloSinRepetidos(numeros);
+        imprimirArreglo(numeros);
+    }    
+}
