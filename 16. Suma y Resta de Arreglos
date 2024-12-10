@@ -1,0 +1,95 @@
+Programa 16: 
+
+Realizar una aplicación con el siguiente menú:
+1. Llenar el arreglo A de manera aleatoria.
+2. Llenar el arreglo B de manera aleatoria.
+3. Realizar C = A + B
+4. Realizar C = B - A
+5. Mostrar Arreglo (Permitiendo al usuario elegir entre el arreglo A, B, o C).
+6. Salir. 
+
+package sumayrestadearreglos;
+import java.util.Scanner;
+
+public class SumaYRestaDeArreglos {
+    
+    public static void llenarArreglo(int[] arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            arreglo[i] = (int)(Math.random()*20)+1;
+        }
+    }
+    
+    public static void sumarArreglos(int[]A, int[] B, int[] C){
+        for (int i = 0; i < C.length; i++) {
+            C[i] = A[i] + B[i];
+        }
+    }    
+    
+    public static void restarArreglos(int[]A, int[] B, int[] C){
+        for (int i = 0; i < C.length; i++) {
+            C[i] = B[i] - A[i];
+        }
+    }
+    
+    public static void mostrarArreglo(int[] arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print(arreglo[i]+" ");
+        }
+    }
+    
+    public static void ejecutarPrograma(int opcion, int[] A, int[] B, int[] C){
+        
+        switch (opcion){
+            case 1:
+                sumarArreglos(A, B, C);
+                System.out.print("Arreglo A: \n"); mostrarArreglo(A);
+                System.out.print("\nArreglo B: \n"); mostrarArreglo(B);
+                System.out.print("\nA + B: \n"); mostrarArreglo(C);
+                break;
+                
+            case 2:
+                restarArreglos(A, B, C);
+                System.out.print("Arreglo B: \n"); mostrarArreglo(B);
+                System.out.print("\nArreglo A: \n"); mostrarArreglo(A);
+                System.out.print("\nB - A: \n"); mostrarArreglo(C);
+                break;
+                
+            case 3:
+                System.out.print("Arreglo B: \n"); mostrarArreglo(B);
+                System.out.print("\nArreglo A: \n"); mostrarArreglo(A);
+                break;
+                
+            case 0:
+                System.out.println("Cerrando el programa...");
+                break;
+                
+            default:
+                System.out.println("Opcion inválida");
+                break;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);   
+        
+        System.out.print("Ingrese la longitud de los arreglos: ");
+        int n = sc.nextInt();
+        
+        int A[] = new int[n];
+        int B[] = new int [n];
+        int C[] = new int [n];
+        
+        int opcion;
+        llenarArreglo(A); llenarArreglo(B);
+       
+        do {
+            System.out.print("\nIngrese una opcion: \n1. Sumar arreglos\n2. Restar arreglos\n3. Mostrar arreglo\n0. Cerrar\nDigite su opcion: ");
+            opcion = sc.nextInt();
+
+            System.out.println("\n");
+            ejecutarPrograma(opcion, A, B, C);
+            System.out.println("\n");
+            
+        }while (opcion != 0);
+    }   
+}
