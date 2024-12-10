@@ -1,0 +1,71 @@
+Programa 15: Multiplicacion de Matrices
+
+package multiplicaciondematrices;
+import java.util.Scanner;
+
+public class MultiplicacionDeMatrices {
+    
+    public static void multiplicarMatrices(int[][]A, int[][]B, int[][]C){
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < B[0].length; j++) {
+                for (int k = 0; k < A[0].length; k++) {
+                    C[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+    }
+    
+    public static void imprimirMatriz(int[][] matriz){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                System.out.printf("%3d",matriz[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+    
+    public static void llenarMatriz(int[][] matriz, Scanner sc){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                System.out.print("Ingrese el elemento en ["+i+"]["+j+"]: ");
+                matriz[i][j] = sc.nextInt();
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese el numero de filas de la matriz A: ");
+        int filasA = sc.nextInt();
+        
+        System.out.print("Ingrese el numero de columnas de la matriz A: ");
+        int columnasA = sc.nextInt();
+        
+        System.out.print("Ingrese el numero de columnas de la matriz B: ");
+        int columnasB = sc.nextInt();
+        
+        if(filasA != columnasB){
+            System.out.println("Las matrices no pueden multiplicarse");
+            
+        } else {
+            int matrizA[][] = new int[filasA][columnasA];
+            int matrizB[][] = new int[columnasA][columnasB];
+            int matrizC[][] = new int [filasA][columnasB];
+        
+            System.out.println("Llenado de Matriz A: ");
+            llenarMatriz(matrizA, sc);
+            System.out.println("Llenado de Matriz B: ");
+            llenarMatriz(matrizB, sc);
+        
+            multiplicarMatrices(matrizA, matrizB, matrizC);
+            System.out.print("Matriz A: \n");
+            imprimirMatriz(matrizA);
+            System.out.print("\nMatriz B: \n");
+            imprimirMatriz(matrizB);
+            System.out.print("\nMatriz C: \n");
+            imprimirMatriz(matrizC);
+                
+        }
+    }  
+}
