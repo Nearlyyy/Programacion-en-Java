@@ -51,8 +51,6 @@ public class Calificaciones {
         System.out.print("Ingrese la cantidad de calificaciones: ");
         int n = sc.nextInt();
         
-        int deficientes = 0, regulares = 0, buenos = 0, excelentes = 0;
-        
         int calificaciones[] = new int[n];
         int contadores[] = new int[4]; 
         
