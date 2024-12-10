@@ -1,0 +1,74 @@
+Programa 17: 
+
+Suponga un array que contiene N notas de 0 a 20 generados aleatoriamente y mostradas en
+pantalla, de acuerdo a la nota contenida, indique cuántos estudiantes son:
+Deficientes 0-5
+Regulares 6-10
+Buenos 11-15
+Excelentes 16-20
+
+
+package calificaciones;
+import java.util.Scanner;
+
+public class Calificaciones {
+    
+    public static void contabilizarEstudiantes(int[] notas, int contadores[]){
+        for (int i = 0; i < notas.length; i++) {
+            if(notas[i] >= 0 && notas[i] <= 5){
+                contadores[0]++;
+            }
+            
+            if(notas[i] >= 6 && notas[i] <= 10){
+                contadores[1]++;
+            }
+            
+            if(notas[i] >= 11 && notas[i] <= 15){
+                contadores[2]++;
+            }
+            
+            if(notas[i] >= 16 && notas[i] <= 20){
+                contadores[3]++;
+            }
+        }
+    }
+    
+    public static void asignarNotas(int[] notas){
+        for (int i = 0; i < notas.length; i++) {
+            notas[i] = (int)(Math.random()*20);
+        }
+    }
+    
+    public static void imprimirArreglo(int[] arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print(arreglo[i]+"  ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la cantidad de calificaciones: ");
+        int n = sc.nextInt();
+        
+        int deficientes = 0, regulares = 0, buenos = 0, excelentes = 0;
+        
+        int calificaciones[] = new int[n];
+        int contadores[] = new int[4]; 
+        
+        // [0] deficientes, [1] regulares, [2] buenos, [3] excelentes
+        
+        asignarNotas(calificaciones);
+        
+        contabilizarEstudiantes(calificaciones, contadores);
+        
+        System.out.println("Notas: \n");
+        imprimirArreglo(calificaciones);
+        
+        System.out.print("\nEn total hay: \n"
+                + contadores[0]+" estudiantes deficientes\n"
+                + contadores[1]+" estudiantes regulares\n"
+                + contadores[2]+ " estudiantes buenos\n"
+                + contadores[3]+" estudiantes excelentes\n");
+    }   
+}
