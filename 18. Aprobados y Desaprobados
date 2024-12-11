@@ -1,0 +1,84 @@
+Programa 18:
+
+Suponga un array con N notas de 0 a 10, calcule el promedio de aprobados y el promedio de
+los desaprobados e indique la cantidad de aprobados y desaprobados (Se aprueba con una
+nota >= 7).
+
+package aprobadosydesaprobados;
+import java.util.Scanner;
+
+public class AprobadosYDesaprobados {
+    
+    public static void contabilizarEstudiantes(int[] notas, int contadores[]){
+        for (int i = 0; i < notas.length; i++) {
+            if(notas[i] >= 7){
+                contadores[0]++;
+            } else {
+                contadores[1]++;
+            }
+        }
+    }
+    
+    public static void asignarNotas(int[] notas){
+        for (int i = 0; i < notas.length; i++) {
+            notas[i] = (int)(Math.random()*10);
+        }
+    }
+    
+    public static void imprimirArreglo(int[] arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print(arreglo[i]+"  ");
+        }
+    }    
+    
+    public static float obtenerPromedioAprobados(int[] notas){
+        int estudiantesAprobados = 0, sumatoriaAprobados = 0;
+        
+        for (int i = 0; i < notas.length; i++) {
+            if(notas[i] >= 7) {
+                sumatoriaAprobados += notas[i];
+                estudiantesAprobados++;
+            }
+        }
+        return (float) sumatoriaAprobados / estudiantesAprobados;
+    }
+    
+    public static float obtenerPromedioDesaprobados(int[] notas){
+        int estudiantesDesaprobados = 0, sumatoriaDesaprobados = 0;
+        
+        for (int i = 0; i < notas.length; i++) {
+            if(notas[i] >= 7) {
+                estudiantesDesaprobados += notas[i];
+                estudiantesDesaprobados++;
+            }
+        }
+        return ((float)estudiantesDesaprobados / (float)estudiantesDesaprobados);
+    }    
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la cantidad de calificaciones: ");
+        int n = sc.nextInt();
+        
+        int calificaciones[] = new int[n];
+        int contadores[] = new int[2]; 
+        
+        //[0] aprobados, [1] desaprobados
+        
+        asignarNotas(calificaciones);
+        
+        contabilizarEstudiantes(calificaciones, contadores);
+        
+        System.out.println("Notas: \n");
+        imprimirArreglo(calificaciones);
+        
+        System.out.print("\nEn total hay: \n"
+                + contadores[0]+" estudiantes aprobados\n"
+                + contadores[1]+" estudiantes reprobados\n");
+        
+        System.out.println("Promedios: \n"
+                + "Aprobados: "+obtenerPromedioAprobados(calificaciones)+"\n"
+                + "Desaprobados: "+obtenerPromedioDesaprobados(calificaciones));
+    }    
+}
