@@ -1,0 +1,36 @@
+Programa 19: Implemente un programa que identifique los numeros únicos de un arreglos (aquellos que no se repiten) y los agregue a un arreglo 
+
+package ejercicio1;
+import java.util.ArrayList;
+
+public class Ejercicio1 {
+
+    public static void main(String[] args) {
+        int[] numeros = {1,1,2,2,3};
+        ArrayList <Integer> unicos = new ArrayList<>();
+        
+        for (int i = 0; i < numeros.length; i++) {
+            int clave = numeros[i];
+            boolean esUnico = true;
+            
+            for (int j = 0; j < numeros.length; j++) {
+                if(clave == numeros[j] && j != i){
+                    esUnico = false;
+                    break;
+                }
+            }
+            if(esUnico){
+                unicos.add(numeros[i]);
+            }
+        }
+        
+        if(unicos.isEmpty()){
+            System.out.println("No existen numeros unicos en este array");
+        } else {
+            System.out.print("Numeros unicos en el array\n");
+            for (int numero: unicos) {
+                System.out.print(numero+" ");
+            }
+        }
+    }
+}   
