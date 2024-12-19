@@ -1,0 +1,60 @@
+Programa 20: Implemente un programa de Java que me permita rotar un arreglo (a la derecha) n veces
+
+package ejercicio2;
+import java.util.Scanner;
+
+public class Ejercicio2 {
+    
+    public static void llenarArreglo(Scanner sc, int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Ingrese el elemento en la posicion ["+i+"]: ");
+            numeros[i] = sc.nextInt();
+        }
+    }
+    
+    public static String imprimirArreglo(int[] numeros){
+        String cadena = "";
+        for (int i = 0; i < numeros.length; i++) {
+            cadena += numeros[i]+" ";
+        }
+        return cadena;
+    }
+    
+    public static void rotarArreglo(int rotaciones, int[] numeros){
+        int i = 1;
+        while (i <= rotaciones){
+            int temp = numeros[numeros.length-1];
+            
+            for (int j = numeros.length - 2; j >= 0; j--) {
+                
+                numeros[j+1] = numeros[j];
+                
+            }
+            numeros[0] = temp;
+            i++;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("¿Cuantos elementos desea en este arreglo?: ");
+        int n = sc.nextInt();
+        
+        int numeros[] = new int [n];
+        
+        llenarArreglo(sc, numeros);   
+        
+        System.out.print("¿Cuantas rotaciones desea aplicar a este arreglo?: ");
+        int rotaciones = sc.nextInt();
+        
+        System.out.print("Arreglo original\n");
+        System.out.print(imprimirArreglo(numeros));
+        
+        rotarArreglo(rotaciones, numeros);
+        
+        System.out.print("\nArreglo habiendo hecho "+rotaciones+" rotaciones\n");
+        
+        System.out.print(imprimirArreglo(numeros));
+    }   
+}
