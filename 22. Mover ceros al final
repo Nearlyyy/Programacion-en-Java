@@ -1,0 +1,52 @@
+Programa 22: Implemente un programa de Java que me permita mover al final los ceros de un arreglo de numeros enteros
+
+package moverceros;
+import java.util.Scanner;
+
+public class MoverCeros {
+    
+    public static void moverCeros(int[] numeros){
+        int pos = 0;
+        
+        for (int i = 0; i < numeros.length; i++) {
+            if(numeros[i] != 0){
+                numeros[pos] = numeros[i];
+                pos++;
+            }
+        }
+        
+        for (int i = pos; i < numeros.length; i++) {
+            numeros[i] = 0;
+        }
+    }
+    
+    public static String imprimirArreglo(int[] arreglo){
+        String array = "";
+        for (int i = 0; i < arreglo.length; i++) {
+            array += arreglo[i]+" ";
+        }
+        return array;
+    }
+    
+    public static void llenarArreglo(int[] arreglo, Scanner entrada){
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print("Ingrese el elemento en ["+i+"]: ");
+            arreglo[i] = entrada.nextInt();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.print("Ingrese la longitud del arreglo: ");
+        int n = entrada.nextInt();
+        
+        int[] numeros = new int[n];
+        
+        llenarArreglo(numeros, entrada);
+        
+        System.out.println("Arreglo original:\n"+imprimirArreglo(numeros));
+        moverCeros(numeros);
+        System.out.print("Arreglo con ceros al final:\n"+imprimirArreglo(numeros));
+    }   
+}
