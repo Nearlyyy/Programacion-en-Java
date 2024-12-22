@@ -1,0 +1,54 @@
+Programa 24: Implemente un programa que permita hallar el valor que falta en un arreglo
+
+package hallarvalorfaltante;
+
+public class HallarValorFaltante {
+    
+    public static void seleccion(int[] numeros){
+        int indiceMin, auxiliar, n = numeros.length;
+        
+        for (int i = 0; i < n - 1; i++) {
+            indiceMin = i;
+            
+            for (int j = i + 1; j < n; j++) {
+                if (numeros[j] < numeros[indiceMin]) {
+                    indiceMin = j;
+                }
+            }
+            
+            auxiliar = numeros[indiceMin]; 
+            numeros[indiceMin] = numeros[i];
+            numeros[i] = auxiliar;
+        }
+    }
+    
+    public static boolean estaOrdenado(int[] numeros){
+        for (int i = 0; i < numeros.length - 1; i++) {
+            if(numeros[i+1] < numeros[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static int hallarValorFaltante(int[] numeros){
+        int n = numeros.length + 1; // en el arreglo dado deberian haber 12 numeros pues falta uno
+        int sumaObtenida = 0, sumaTotal = (n * (n+1)) / 2;
+        
+        for (int numero: numeros) {
+            sumaObtenida += numero;
+        }
+        return sumaTotal - sumaObtenida;
+    }
+
+    public static void main(String[] args) {
+        int numeros [] = {1,2,3,4,5,6,7,8,9,10,12};
+        
+        // necesitaremos que el arreglo esté ordenado de menor a mayor
+        if(!estaOrdenado(numeros)){
+            seleccion(numeros);
+        }
+        
+        System.out.println("El valor faltante en este arreglo es "+hallarValorFaltante(numeros));
+    }   
+}
