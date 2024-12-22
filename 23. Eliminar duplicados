@@ -1,0 +1,45 @@
+Programa 23: Implemente un programa de Java que me permita eliminar los elementos repetidos de un arreglo
+
+package eliminarduplicados;
+import java.util.Scanner;
+
+public class EliminarDuplicados {
+    
+    public static String eliminarDuplicados(int[] numeros){
+        String arreglo = "";
+        for (int i = 0; i < numeros.length; i++) { // Se toma un valor del arreglo inicial para comparar
+            boolean yaExiste = false; // se establecerá que dicho número no se repite aún
+            
+            for (int j = 0; j < i; j++) { // comparamos dicho numero con el resto, excepto consigo mismo
+                if(numeros[i] == numeros[j]){
+                    yaExiste = true; // si esta variable cambia a true significa que está duplicado y
+                    break; // el ciclo termina para evitar comparaciones innecesarias
+                }
+            }
+            
+            if(!yaExiste){ // si la variable originalmente se mantuvo en false, significa que no está duplicado y por ende
+                arreglo += numeros[i]+" "; // lo agregamos a la cadena
+            }
+        }
+        return arreglo;
+    }
+    
+    public static void llenarArreglo(Scanner entrada, int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Ingrese el elemento en ["+i+"]: ");
+            numeros[i] = entrada.nextInt();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner (System.in);
+        
+        System.out.print("Ingrese la longitud del arreglo: ");
+        int n = entrada.nextInt();
+        
+        int[] numeros = new int[n];
+        
+        llenarArreglo(entrada, numeros);
+        System.out.print("Arreglo sin duplicados\n"+eliminarDuplicados(numeros));
+    }   
+}
