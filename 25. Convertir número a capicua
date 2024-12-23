@@ -1,0 +1,57 @@
+Programa 25: Implemente un programa que convierta un número a capicua en caso de que el numero ingresado no lo sea
+
+package convertiracapicua;
+
+import java.util.Scanner;
+
+public class ConvertirACapicua {
+    
+    public static int getPosiciones(int numero){
+        int posiciones = 0;
+        
+        while(numero > 0){
+            numero /= 10;
+            posiciones++;
+        }
+        return posiciones - 1;
+    }
+    
+    public static int hallarCapicua(int numero){
+        int posiciones = getPosiciones(numero), capicua = 0;
+        
+        while(numero > 0){
+            int digito = numero % 10;
+            capicua += digito * (Math.pow(10,posiciones));
+            posiciones--;
+            numero /= 10;
+        }
+        return capicua;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un número: ");
+        int numero = sc.nextInt();
+        
+        int capicua = hallarCapicua(numero);
+        
+        if(numero == capicua){
+            System.out.print(numero+" es capicua\n");
+        } else {
+            int pasos = 0;
+            
+            while(numero != capicua){
+                // Al momento de hacer una comparacion usando un bucle, es necesario actualizar las variables para evitar bucles infinitos
+                System.out.println(numero+" no es capicua. Convirtiendo a capicua...");
+                pasos++;
+                
+                System.out.println("Paso "+pasos+":\nnumero = "+numero+"\ncapicua de "+numero+" = "+capicua);
+                numero += hallarCapicua(numero);               
+                capicua = hallarCapicua(numero);
+            }
+            
+            System.out.println("\nNumero convertido a capicua: "+numero);
+        }
+    }   
+}
