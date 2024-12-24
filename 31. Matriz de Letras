@@ -1,0 +1,43 @@
+Programa 31: Implemente un programa que imprima una matriz de letras 
+
+package matrizdeletras;
+import java.util.Scanner;
+
+public class MatrizDeLetras {
+    
+    public static void llenarMatrizConLetras(char[][] matriz){
+        char letra = 'a';
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                if(letra > 'z'){
+                    letra = 'a';
+                }
+                matriz[i][j] = letra;
+                letra++;
+            }
+        }
+    }
+    
+    public static String imprimirMatriz(char[][]matriz){
+        String matrizDeLetras = "";
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                matrizDeLetras += matriz[i][j]+" ";
+            }
+            matrizDeLetras += "\n";
+        }    
+        return matrizDeLetras;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la dimension de la matriz (n x n): ");
+        int n = sc.nextInt();
+        
+        char[][] matrizDeLetras = new char[n][n];
+        
+        llenarMatrizConLetras(matrizDeLetras);
+        System.out.println(imprimirMatriz(matrizDeLetras));
+    }   
+}
