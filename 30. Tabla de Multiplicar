@@ -1,0 +1,24 @@
+Programa 30: Implemente un programa que genere la tabla de multiplicar de un numero especificado
+
+package tablademultiplicar;
+import java.util.Scanner;
+
+public class TablaDeMultiplicar {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un numero: ");
+        int numero = sc.nextInt();
+        
+        int multiplicador = 1;
+        
+        System.out.println("Tabla de multiplicar del "+numero+": \n");
+        
+        while(multiplicador <= 10){
+            int resultado = multiplicador * numero;
+            System.out.println(numero+" * "+multiplicador+" = "+resultado);
+            multiplicador++;
+        }
+    }    
+}
