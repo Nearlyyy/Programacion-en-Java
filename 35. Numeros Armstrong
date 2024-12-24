@@ -1,0 +1,46 @@
+Programa 35: Implemente un programa que verifique si un número es un número Armstrong
+
+Explicacion: Un número Armstrong (también conocido como número narcisista, número pluperfecto digital o número Plus Perfect) 
+es un número que es igual a la suma de sus dígitos elevados a la potencia del número de dígitos que tiene.
+
+package numeroarmstrong;
+import java.util.Scanner;
+
+public class NumeroArmstrong {
+    
+    public static int hallarCantidadDeDigitos(int numero){
+        int digitos = 0;
+        
+        while(numero > 0){
+            numero /= 10;
+            digitos++;
+        }
+        return digitos;
+    }
+    
+    public static int hallarNumeroArmstrong(int numero){
+        int armstrong = 0, potencia = hallarCantidadDeDigitos(numero);
+        
+        while(numero > 0){
+            int digito = numero % 10;
+            armstrong += Math.pow(digito,potencia);
+            numero /= 10;
+        }
+        return armstrong;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un número: ");
+        int numero = sc.nextInt();
+        
+        int numeroArmstrong = hallarNumeroArmstrong(numero);
+        
+        if(numero == numeroArmstrong){
+            System.out.println(numero+" es un número Armstrong");
+        } else {
+            System.out.println(numero+" no es un número Armstrong");
+        }
+    }   
+}
