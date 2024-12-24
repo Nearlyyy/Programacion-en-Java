@@ -1,4 +1,4 @@
-Programa 31: Implemente un programa que imprima una matriz de letras 
+Programa 31: Implemente un programa que imprima una matriz de letras  
 
 package matrizdeletras;
 import java.util.Scanner;
