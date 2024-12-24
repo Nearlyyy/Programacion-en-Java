@@ -1,0 +1,30 @@
+Programa 29: Implementar un programa que compare tres numeros y me diga cual es el mayor
+
+package comparar3numeros;
+import java.util.Scanner;
+
+public class Comparar3Numeros {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un primer numero: ");
+        int numero1 = sc.nextInt();
+        
+        System.out.print("Ingrese un segundo número: ");
+        int numero2 = sc.nextInt();
+        
+        System.out.print("Ingrese un tercer número: ");
+        int numero3 = sc.nextInt();
+        
+        if(numero1 > numero2 && numero1 > numero3){
+            System.out.println(numero1+" es el numero mayor");
+        } else {
+            if(numero2 > numero1 && numero2 > numero3){
+                System.out.println(numero2+" es el numero mayor");
+            } else {
+                System.out.println(numero3+" es el número mayor");
+            }
+        }
+    }   
+}
