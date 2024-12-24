@@ -1,0 +1,25 @@
+Programa 27: Implemente un programa que calcule la suma de los digitos de un numero ingresado
+
+package sumadedigitos;
+
+import java.util.Scanner;
+
+public class SumaDeDigitos {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un numero: ");
+        int numero = sc.nextInt();
+        
+        int auxNumero = numero;
+        int sumaDigitos = 0;
+        
+        while(numero > 0){
+            sumaDigitos += (numero % 10);
+            numero /= 10;
+        }
+        
+        System.out.println("La suma de los digitos de "+auxNumero+" es "+sumaDigitos);
+    }    
+}
