@@ -1,0 +1,24 @@
+Programa 33: Implemente un programa que imprima la serie de Fibonacci
+
+package fibonacci;
+
+import java.util.Scanner;
+
+public class Fibonacci {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("¿Cuantos números desea imprimir?: ");
+        int numeros = sc.nextInt();
+        
+        int a = 0, b = 1, c;
+        
+        for (int i = 0; i < numeros; i++) {
+            System.out.println(a);
+            c = a + b;
+            a = b;
+            b = c;
+        }
+    }   
+}
