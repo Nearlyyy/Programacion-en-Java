@@ -1,0 +1,31 @@
+Programa 28: Implemente un programa que me diga si un numero es abundante
+
+Explicacion: ¿Que es un numero abundante? 
+Un número abundante es un número entero positivo cuya suma de sus divisores propios (excluyendo el número mismo) es mayor que el propio número.
+
+package numeroabundante;
+import java.util.Scanner;
+
+public class NumeroAbundante {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un numero: ");
+        int numero = sc.nextInt();
+        
+        int sumaDivisores = 0;
+        
+        for (int i = 1; i < numero; i++) {
+            if(numero % i == 0){
+                sumaDivisores += i;
+            }
+        }
+        
+        if(sumaDivisores > numero){
+            System.out.println(numero+" si es un numero abundante");
+        } else {
+            System.out.println(numero+" no es un numero abundante");
+        }
+    }    
+}
