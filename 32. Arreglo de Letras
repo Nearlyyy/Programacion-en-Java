@@ -1,0 +1,59 @@
+Programa 32: Implemente un programa que me permita llenar un arreglo con letras. El programa debe ordenar este arreglo de manera alfabetica
+
+package arreglodeletras;
+import java.util.Scanner;
+
+public class ArregloDeLetras {
+    
+    public static void seleccion (char[] letras){
+        int indiceMin, n = letras.length;
+        char auxiliar;
+        
+        for (int i = 0; i < n - 1; i++) {
+            indiceMin = i;
+            
+            for (int j = i + 1; j < n; j++) {
+                if (letras[j] < letras[indiceMin]) {
+                    indiceMin = j;
+                }
+            }
+            
+            auxiliar = letras[indiceMin]; 
+            letras[indiceMin] = letras[i];
+            letras[i] = auxiliar;
+        }
+    }
+    
+    public static void imprimirArreglo(char[] letras){
+        for (int i = 0; i < letras.length; i++) {
+            System.out.print(letras[i]+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la dimension del arreglo: ");
+        int n = sc.nextInt();
+        
+        char[] letras = new char[n];
+        
+        for (int i = 0; i < letras.length; i++) {
+            char letra;
+            System.out.print("Ingrese una letra para la posicion "+i+": ");
+            letra = sc.next().charAt(0);
+            
+            while(letra < 'a' || letra > 'z'){
+                System.out.print("Caracter no válido, por favor ingrese nuevamente: ");
+                letra = sc.next().charAt(0);
+            }
+            
+            letras[i] = letra;
+        }
+        System.out.print("Arreglo original: \n");
+        imprimirArreglo(letras);
+        System.out.print("\nArreglo ordenado: \n");
+        seleccion(letras);
+        imprimirArreglo(letras);
+    }   
+}
