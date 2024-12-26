@@ -1,0 +1,24 @@
+Programa 39: Implemente un programa que redondee un numero al entero más cercano
+
+package redondeos;
+import java.util.Scanner;
+
+public class Redondeos {
+    
+    public static int getEnteroMasCercano(double decimal){
+        if(decimal + 0.5 >= (int) decimal + 1){
+            return (int) decimal + 1;
+        } else {
+            return (int) decimal;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un numero decimal: ");
+        double decimal = sc.nextDouble();
+        
+        System.out.println(decimal+" redondeado al entero más cercano: "+getEnteroMasCercano(decimal));
+    }  
+}
