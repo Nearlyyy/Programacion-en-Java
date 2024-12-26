@@ -1,0 +1,62 @@
+Programa 37: Implemente un programa de Java que dibuje una matriz en espiral
+
+package matrizespiral;
+import java.util.Scanner;
+
+public class MatrizEspiral {
+    
+    public static void imprimirMatriz(int[][] m){
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                System.out.printf("%3d",m[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese una valor para n (dimension del arreglo nxn): ");
+        int n = sc.nextInt();
+        
+        int matriz[][] = new int[n][n];
+        int num = 1;
+        
+        int filaInicial = 0, filaFinal = n - 1;
+        int columnaInicial = 0, columnaFinal = n - 1;
+        
+        while(filaInicial <= filaFinal && columnaInicial <= columnaFinal){
+            
+            for (int i = filaInicial; i <= filaFinal; i++) {
+                matriz[filaInicial][i] = num;
+                num++;
+            }
+            filaInicial++;
+            
+            for (int i = filaInicial; i <= filaFinal; i++) {
+                matriz[i][columnaFinal] = num;
+                num++;
+            }
+            columnaFinal--;
+            
+            if(filaInicial <= filaFinal){
+                for (int i = columnaFinal; i >= columnaInicial; i--) {
+                    matriz[filaFinal][i] = num;
+                    num++;
+                }
+            }
+            filaFinal--;
+            
+            if(columnaInicial <= columnaFinal){
+                for (int i = filaFinal; i >= filaInicial; i--) {
+                    matriz[i][columnaInicial] = num;
+                    num++;
+                }
+            }
+            columnaInicial++;
+        }
+        
+        imprimirMatriz(matriz);
+    }    
+}
