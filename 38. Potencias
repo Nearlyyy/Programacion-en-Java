@@ -1,0 +1,46 @@
+Programa 38: Implemente un programa que calcule la potencia de un numero dados su numero base y el exponente
+
+package potencias;
+import java.util.Scanner;
+
+public class Potencias {
+
+    public static int calcularPotencia(int exponente, int numero){
+        int potencia = 1;
+        
+        if(exponente == 0){
+            return 1;
+        }
+        
+        for (int i = 1; i <= exponente; i++) {
+            potencia *= numero;
+        }
+        return potencia;
+    }
+    
+    public static String calcularPotenciaNegativa(int exponente, int numero){
+        int potencia = 1;
+        
+        for (int i = 1; i <= Math.abs(exponente); i++) {
+            potencia *= numero;
+        }
+        
+        return "1 / "+potencia;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese un número base: ");
+        int numero = sc.nextInt();
+        
+        System.out.print("Ingrese un exponente: ");
+        int exponente = sc.nextInt();
+        
+        if(exponente >= 0){
+            System.out.print(numero+"^"+exponente+" = "+calcularPotencia(exponente, numero)+"\n");
+        } else {
+            System.out.print(numero+"^"+exponente+" = "+calcularPotenciaNegativa(exponente, numero)+"\n");
+        }
+    }   
+}
