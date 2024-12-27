@@ -1,0 +1,58 @@
+Programa 42: Implemente un programa de Java que cuenta las consonantes, vocales y digitos que hay en una cadena
+
+package contadordeletras;
+import java.util.Scanner;
+
+public class ContadorDeLetras {
+    
+    public static boolean esVocal(char vocal){
+        vocal = Character.toLowerCase(vocal);
+        return (vocal == 'a' || vocal == 'e' || vocal == 'i' || vocal == 'o' || vocal == 'u');
+    }
+    
+    public static boolean esDigito(char digito){
+        return digito == '0' || digito == '1' || digito == '2' || digito == '3' || digito == '4' || digito == '5' || digito == '6' 
+                || digito == '7' || digito == '8' || digito == '9';
+    }
+    
+    public static boolean esConsonante(char consonante){
+        if(esVocal(consonante) || esDigito(consonante)){
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean esUnCaracterEspecial(char caracter){
+        if(esVocal(caracter) || esConsonante(caracter) || esDigito(caracter)){
+            return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese una cadena de texto: ");
+        String cadena = sc.nextLine();
+        
+        int vocales = 0, consonantes = 0, digitos = 0;
+        
+        for (int i = 0; i < cadena.length(); i++) {
+            char caracter = cadena.charAt(i);
+            
+            if(esVocal(caracter)){
+                vocales++;
+            } else {
+                if(esConsonante(caracter)){
+                    consonantes++;
+                } else {
+                    if(esDigito(caracter)){
+                        digitos++;
+                    }
+                }
+            }
+        }
+        
+        System.out.print("La palabra / frase: "+cadena+" posee\nVocales: "+vocales+"\nConsonantes: "+consonantes+"\nDigitos: "+digitos+"\n");
+    }    
+}
