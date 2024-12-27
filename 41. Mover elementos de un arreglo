@@ -1,0 +1,69 @@
+Programa 41: Implemente un programa que me permita mover un elemento de un arreglo con cada iteracion
+
+package movertodosloselementos;
+import java.util.Scanner;
+
+public class MoverTodosLosElementos {
+    
+    public static void moverElemento(int[] numeros, int posicion, int nuevaPosicion){
+        int auxiliar = numeros[nuevaPosicion];
+        numeros[nuevaPosicion] = numeros[posicion];
+        numeros[posicion] = auxiliar;
+    }
+    
+    public static void llenarArreglo(int[] numeros, Scanner sc){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Ingrese el elemento en la posicion "+i+": ");
+            numeros[i] = sc.nextInt();
+        }
+    }
+    
+    public static void imprimirArreglo(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i]+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese el numero de elemento que desea tener en el arreglo: ");
+        int n = sc.nextInt();
+        
+        int numeros[] = new int[n];
+        llenarArreglo(numeros, sc);
+        System.out.print("Arreglo original: \n");
+        imprimirArreglo(numeros);
+        
+        int i = 1;
+        
+        while(i <= n){
+            
+            System.out.print("\nIngrese la posicion del elemento que desea mover (0 - "+(numeros.length - 1)+"): ");
+            int posicion = sc.nextInt();
+        
+            while(posicion < 0 || posicion > numeros.length - 1){
+                System.out.print("La posicion no es válida, por favor ingrese nuevamente: ");
+                posicion = sc.nextInt();
+            }
+        
+            System.out.println("Elemento a mover: "+numeros[posicion]);
+        
+            System.out.print("Ingrese la posicion a la que desea mover el elemento "+numeros[posicion]+": ");
+            int nuevaPosicion = sc.nextInt();
+        
+            while(nuevaPosicion < 0 || nuevaPosicion > numeros.length - 1 || posicion == nuevaPosicion){
+                System.out.print("La posicion no es válida, por favor ingrese nuevamente: ");
+                nuevaPosicion = sc.nextInt();
+            }
+            
+            System.out.println("Posicion a la que se moverá: "+nuevaPosicion+"\n");
+        
+            System.out.println("Elemento a mover: "+numeros[posicion]+"\nPosicion a la que se moverá: "+nuevaPosicion+"\n");
+            moverElemento(numeros, posicion, nuevaPosicion);
+            imprimirArreglo(numeros);
+            
+            i++;
+        }
+    }   
+}
