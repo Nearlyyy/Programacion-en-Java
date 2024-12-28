@@ -1,0 +1,35 @@
+Programa 46: Implemente un programa que llene un arreglo con terminos de la serie de Fibonacci
+
+package arreglofibonacci;
+import java.util.Scanner;
+
+public class ArregloFibonacci {
+    
+    public static void llenarArreglo(int[] fibonacci){
+        int a = 0, b = 1, c;
+        for (int i = 0; i < fibonacci.length; i++) {    
+            fibonacci[i] = a;
+            c = a + b;
+            a = b;
+            b = c;
+        }
+    }
+    
+    public static void imprimirArreglo(int[] arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print(arreglo[i]+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la cantidad de elementos en el arreglo: ");
+        int n = sc.nextInt();
+        
+        int[] fibonacci = new int[n];
+        
+        llenarArreglo(fibonacci);
+        imprimirArreglo(fibonacci);
+    }    
+}
