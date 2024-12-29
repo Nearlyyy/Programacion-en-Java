@@ -1,0 +1,43 @@
+Programa 51: Implemente un programa que cree un histograma con los numeros de un arreglo
+
+package histograma;
+import java.util.Scanner;
+
+public class Histograma {
+    
+    public static void llenarArreglo(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = (int)(Math.random()*50);
+        }
+    }
+    
+    public static void crearHistograma(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            for (int j = 1; j <= numeros[i]; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
+        }
+    }
+    
+    public static void imprimirArreglo(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i]+" ");
+        }
+    }       
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la cantidad de elementos del arreglo: ");
+        int n = sc.nextInt();
+        
+        int[] numeros = new int[n];
+        
+        llenarArreglo(numeros);
+        imprimirArreglo(numeros);
+        System.out.println("");
+        crearHistograma(numeros);
+        
+    }  
+}
