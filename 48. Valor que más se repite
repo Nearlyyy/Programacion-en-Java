@@ -1,0 +1,49 @@
+Programa 48: Implemente un programa de Java que halle el valor que más se repite en un arreglo y cuantas veces lo hace
+
+package numeroqueserepite;
+import java.util.Scanner;
+
+public class NumeroQueSeRepite {
+    
+    public static void llenarArreglo(int[] numeros, Scanner sc){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Ingrese el elemento en ["+i+"]: ");
+            numeros[i] = sc.nextInt();
+        }
+    }
+    
+    public static void imprimirArreglo(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i]+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Ingrese el numero de elementos en el arreglo: ");
+        int n = sc.nextInt();
+        
+        int[] numeros = new int[n];
+        llenarArreglo(numeros, sc);
+        
+        int contador, repeticiones = 0, repetido = 0;
+        
+        for (int i = 0; i < numeros.length; i++) {
+            int elemento = numeros[i];
+            contador = 0;
+            for (int j = 0; j < numeros.length; j++) {
+                if(numeros[j] == elemento){
+                    contador++;
+                }
+            }
+            if(contador > repeticiones){
+                repeticiones = contador;
+                repetido = elemento;
+            }
+        }
+        
+        imprimirArreglo(numeros);
+        System.out.println("\nEl numero que más se repite en este arreglo es el "+repetido+" que se repite "+repeticiones+" veces");
+    }   
+}
