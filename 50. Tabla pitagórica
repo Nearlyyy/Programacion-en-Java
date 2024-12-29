@@ -1,0 +1,28 @@
+Programa 50: Implemente un programa que cree la tabla pitagórica
+
+package tablapitagorica;
+import java.util.Scanner;
+
+public class TablaPitagorica {
+    
+    public static void crearTablaPitagorica(int filas, int columnas){
+        for (int i = 1; i <= filas; i++) {
+            for (int j = 1; j <= columnas; j++) {
+                System.out.printf("%4d",(i*j));
+            }
+            System.out.println("");
+        }   
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese las filas de la tabla: ");
+        int filas = sc.nextInt();
+        
+        System.out.print("Ingrese las columnas de la tabla: ");
+        int columnas = sc.nextInt();
+        
+        crearTablaPitagorica(filas, columnas);
+    }    
+}
