@@ -1,0 +1,51 @@
+Programa 49: Implemente un programa que extraiga los numeros primos de un arreglo que se llena de numeros randomicos
+
+package extraernumerosprimos;
+
+import java.util.Scanner;
+
+public class ExtraerNumerosPrimos {
+
+    public static boolean esPrimo(int numero){
+        if(numero <= 1){
+            return false;
+        }
+        
+        for (int i = 2; i <= Math.sqrt(numero); i++) {
+            if(numero % i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static void llenarArreglo(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = (int)(Math.random()*100);
+        }
+    }    
+    
+    public static void imprimirArreglo(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i]+" ");
+        }
+    }    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la cantidad de elementos que tendrá el arreglo: ");
+        int n = sc.nextInt();
+        
+        int[] numeros = new int[n];
+        
+        llenarArreglo(numeros);
+        imprimirArreglo(numeros);
+        
+        System.out.println("\nNumeros primos en este arreglo");
+        for (int i: numeros) {
+            if(esPrimo(i)){
+                System.out.print(i+" ");
+            }
+        }
+    }    
+}
