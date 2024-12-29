@@ -1,0 +1,45 @@
+Programa 53: Implemente un programa de Java que dibuje varias figuras geometricas usando asteriscos
+
+package dibujarfiguras;
+import java.util.Scanner;
+
+public class DibujarFiguras {
+    
+    public static void dibujarFiguras(int altura){
+        System.out.println("Cuadrado");
+        for (int i = 0; i < altura; i++) {
+            for (int j = 0; j < altura; j++) {
+                System.out.print("*  ");
+            }
+            System.out.println("");
+        }
+        
+        System.out.println("Triangulo");
+        for (int i = 0; i < altura; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
+        }
+        
+        System.out.println("Piramide");
+        for (int i = 0; i < altura; i++) {
+            for (int j = 0; j < altura - i - 1; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese la altura de las figuras: ");
+        int altura = sc.nextInt();
+        
+        dibujarFiguras(altura);
+    }   
+}
