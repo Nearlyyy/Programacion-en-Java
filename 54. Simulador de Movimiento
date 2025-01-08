@@ -92,7 +92,7 @@ public class Movimiento {
         imprimirMapa(mapa);
         
         do{
-            System.out.print("¿Hacia donde desea mover el personaje?\n1.Arriba\n2.Abajo\n3.Derecha\n4.Izquierda\nOpcion: ");
+            System.out.print("¿Hacia donde desea mover el personaje?\n1.Arriba\n2.Abajo\n3.Derecha\n4.Izquierda\n0.Terminar\nOpcion: ");
             opcion = sc.nextInt();
             
             if(opcion != 0){
