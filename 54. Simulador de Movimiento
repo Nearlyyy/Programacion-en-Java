@@ -1,0 +1,110 @@
+Programa 54: Implemente un programa en Java que me permita mover un caracter dentro de una matriz de caracteres, el mismo debe representar a un personaje. El programa debe permitirme 
+1. Moverme hacia arriba
+2. Moverme hacia abajo
+3. Moverme hacia la derecha
+4. Moverme hacia la izquierda
+
+package movimiento;
+import java.util.Scanner;
+
+public class Movimiento {
+    
+    public static void inicializarTablero(char[][] mapa){
+        for (int i = 0; i < mapa.length; i++) {
+            for (int j = 0; j < mapa[i].length; j++) {
+                mapa[i][j] = ' ';
+            }
+        }
+    }
+    
+    public static void imprimirMapa(char[][] mapa){
+        for (int i = 0; i < mapa.length; i++) {
+            for (int j = 0; j < mapa.length; j++) {
+                System.out.print("["+mapa[i][j]+"] ");
+            }
+            System.out.println("");
+        }
+    }
+    
+    public static void moverPersonaje(char mapa[][], int coordenadas[], int opcion, char personaje){
+        // Se inicializan las coordenadas
+        int fila = coordenadas[0];
+        int columna = coordenadas[1];
+        
+        // Se limpia la posicion anterior del caracter
+        mapa[fila][columna] = ' ';
+        
+        switch (opcion){
+            case 1: // Movimiento hacia arriba
+                fila--;
+                
+                if(fila == -1){
+                    fila = mapa.length - 1;
+                }
+                break;
+            
+            case 2: // Movimiento hacia abajo
+                fila++;
+                if(fila == mapa.length){
+                    fila = 0;
+                }
+                break;
+                
+            case 3: // Movimiento hacia la derecha
+                columna++;
+                
+                if(columna == mapa.length){
+                    columna = 0;
+                }
+                break;
+                
+            case 4: // Movimiento hacia la izquierda
+                columna--;
+                
+                if(columna == -1){
+                    columna = mapa.length - 1;
+                }
+                break;
+        }
+        // Actualizando la posicion del caracter
+        mapa[fila][columna] = personaje;
+        
+        // Guardando las coordenadas del caracter
+        coordenadas[0] = fila;
+        coordenadas[1] = columna;
+    }
+    
+    public static void ejecutable(Scanner sc){
+        char personaje = 'x';
+        
+        System.out.print("Ingrese la dimension del mapa (n x n): ");
+        int n = sc.nextInt();
+        
+        char mapa[][] = new char [n][n];
+        inicializarTablero(mapa);
+        
+        int filaInicial = mapa.length / 2, columnaInicial = filaInicial;
+        int coordenadas[] = {filaInicial, columnaInicial}; // El arreglo me permite guardar las posiciones del caracter
+        
+        mapa[filaInicial][columnaInicial] = personaje;
+        
+        int opcion;
+        imprimirMapa(mapa);
+        
+        do{
+            System.out.print("¿Hacia donde desea mover el personaje?\n1.Arriba\n2.Abajo\n3.Derecha\n4.Izquierda\nOpcion: ");
+            opcion = sc.nextInt();
+            
+            if(opcion != 0){
+                moverPersonaje(mapa, coordenadas, opcion, personaje);
+                imprimirMapa(mapa);
+            }
+            
+        } while (opcion != 0);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        ejecutable(sc);
+    }   
+}
