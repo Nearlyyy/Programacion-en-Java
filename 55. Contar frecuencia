@@ -1,6 +1,6 @@
 Programa 55: Implemente un programa de Java que cuente cuantas veces se repite un numero en un arreglo. Por ejemplo, si tengo este arreglo...
 [1,1,1,1,2,2,2,3]
-El programa debe imprimir lo siguiente
+El programa debe imprimir lo siguiente 
 
 1 se repite 4 veces
 2 se repite 3 veces
