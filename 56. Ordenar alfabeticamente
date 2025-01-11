@@ -1,0 +1,59 @@
+Programa 56: Implemente un programa que ordene un arreglo de caracteres alfabeticamente
+
+package ordenaralfabeticamente;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class OrdenarAlfabeticamente {
+    
+    public static void ordenarAlfabeticamente(String[] nombres){
+        for (int i = 0; i < (nombres.length - 1); i++) {
+            char letra = Character.toLowerCase(nombres[i].charAt(0));
+            for (int j = i + 1; j < (nombres.length); j++) {
+                char primerLetra = Character.toLowerCase(nombres[j].charAt(0));
+                if(primerLetra < letra){
+                    String auxiliar = nombres[i];
+                    nombres[i] = nombres[j];
+                    nombres[j] = auxiliar;
+                }
+            }
+        }
+    }
+    
+    public static void llenarArreglo(String[] nombres, Scanner sc){
+        for (int i = 0; i < nombres.length; i++) {
+            System.out.print("Ingrese el elemento en "+i+": ");
+            nombres[i] = sc.next();
+        }
+    }
+    
+    public static void imprimirArreglo(String nombres[]){
+        for (String nombre: nombres) {
+            System.out.print(nombre+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        try{
+            System.out.print("¿Cuantos nombres desea ingresar?: ");
+            int n = sc.nextInt();
+            
+            String[] nombres = new String [n];
+            llenarArreglo(nombres, sc);
+        
+            System.out.println("Arreglo original: ");
+            imprimirArreglo(nombres);
+        
+            System.out.println("\nArreglo ordenado en orden alfabetico: ");
+            ordenarAlfabeticamente(nombres);
+            imprimirArreglo(nombres);
+            
+        } catch (InputMismatchException e){
+            System.out.println("El dato introducido no es un número");
+        } finally {
+            System.out.println("Finalizando el programa... ");
+        }
+    }   
+}
