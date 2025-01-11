@@ -1,0 +1,124 @@
+Programa 57: Implemente una calculadora en Java que me permita realizar operacion con 1 y 2 números
+
+package calculadora;
+import java.util.Scanner;
+
+public class Calculadora {
+    
+    public static int sumar(int numero1, int numero2){
+        return numero1 + numero2;
+    }
+    
+    public static int restar(int numero1, int numero2){
+        return numero1 - numero2;
+    }
+    
+    public static int multiplicar(int numero1, int numero2){
+        return numero1 * numero2;
+    }
+    
+    public static double dividir(int numero1, int numero2){
+        if(numero2 == 0){
+            System.out.println("No se puede dividir entre 0");
+            return 0;
+        }
+        return (double) numero1 / (double) numero2;
+    }
+    
+    public static double logaritmoBase2(int numero){
+        double decimal = numero;
+        
+        return Math.log(numero) / Math.log(2);
+    }
+    
+    public static double logaritmoBase10(int numero){
+        double decimal = numero;        
+        return Math.log(numero);
+    }
+    
+    public static double seno(int numero){
+        double decimal = numero; 
+        return Math.sin(Math.toRadians(numero));
+    }
+    
+    public static double coseno(int numero){
+        double decimal = numero;
+        return Math.cos(Math.toRadians(numero));
+    }
+    
+    public static double tangente(int numero){
+        return seno(numero) / coseno(numero);
+    }    
+    
+    public static double cosecante(int numero){
+        return 1 / seno(numero);
+    }
+    
+    public static double secante (int numero){
+        return 1 / coseno(numero);
+    }
+    
+    public static double cotangente(int numero){
+        return coseno(numero) / seno(numero);
+    }
+    
+    public static void ejecutableDeUnNumero(int numero, int opcion){
+        switch(opcion){
+            case 1: System.out.print("Logaritmo base 2 de "+numero+": "+logaritmoBase2(numero)); break;
+            case 2: System.out.print("Logaritmo base 10 de "+numero+": "+logaritmoBase10(numero)); break;
+            case 3: System.out.print("Seno de "+numero+": "+seno(numero)); break;
+            case 4: System.out.print("Coseno de "+numero+": "+coseno(numero)); break;
+            case 5: System.out.print("Tangente de "+numero+": "+tangente(numero)); break;
+            case 6: System.out.print("Cosecante de "+numero+": "+cosecante(numero)); break;
+            case 7: System.out.print("Secante de "+numero+": "+secante(numero));; break;
+            case 8: System.out.print("Cotangente de "+numero+": "+cotangente(numero));; break;
+        }
+    }
+    
+    public static void ejecutableDeDosNumeros(int numero2, int numero3, int opcion){
+        switch(opcion){
+            case 1: System.out.println(numero2+" + "+numero3+" = "+sumar(numero2, numero3)); break;
+            case 2: System.out.println(numero2+" - "+numero3+" = "+restar(numero2, numero3)); break;
+            case 3: System.out.println(numero2+" * "+numero3+" = "+multiplicar(numero2, numero3)); break;
+            case 4: 
+                if(numero3 == 0){
+                    System.out.println("No se puede dividir entre 0"); break;
+                } else {
+                    System.out.println(numero2+" / "+numero3+" = "+dividir(numero2, numero3));
+                }
+        }
+    }
+    
+    public static void ejecutable(char opcion, Scanner sc){
+        int numero1 = 0, numero2 = 0, numero3 = 0, operacion = 0;
+        if(opcion == 'a'){
+            System.out.print("Ingrese el numero con el que se va a trabajar: ");
+            numero1 = sc.nextInt();
+            
+            System.out.println("Seleccione que operacion desea realizar:\n1. Logaritmo base \n2. Logaritmo base 10\n3. Seno\n4. Coseno\n5. Tangente\n6. Cosecante\n7.Secante\n8. Cotangente\nOpcion: ");
+            operacion = sc.nextInt();
+            
+            ejecutableDeUnNumero(numero1, operacion);
+        } else {
+            System.out.print("Ingrese el primer numero con el que se va a trabajar: ");
+            numero2 = sc.nextInt();
+            
+            System.out.print("Ingrese el segundo numero con el que se va a trabajar: ");
+            numero3 = sc.nextInt();
+            
+            System.out.println("Seleccione que operacion desea realizar:\n1. Suma \n2. Resta \n3. Multiplicacion\n4. Division\nOpcion: ");
+            operacion = sc.nextInt();
+            
+            ejecutableDeDosNumeros(numero2, numero3, operacion);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("¿Con cuantos numeros desea trabajar?\na) 1 número\nb) 2 números\nOpcion: ");
+        char opcion = sc.nextLine().charAt(0);
+        
+        ejecutable(opcion, sc);
+    }       
+}
