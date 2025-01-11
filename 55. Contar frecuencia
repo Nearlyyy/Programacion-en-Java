@@ -1,0 +1,63 @@
+Programa 55: Implemente un programa de Java que cuente cuantas veces se repite un numero en un arreglo. Por ejemplo, si tengo este arreglo...
+[1,1,1,1,2,2,2,3]
+El programa debe imprimir lo siguiente
+
+1 se repite 4 veces
+2 se repite 3 veces
+3 se repite 1 vez
+
+package frecuencia;
+import java.util.Scanner;
+
+public class Frecuencia {
+
+    // Verifica si un elemento anteriormente ya se encontraba en el arreglo
+    // Esto permite que no se repita cuantas veces está presente un numero en un arreglo, sino que solo se muestre una vez
+    public static boolean estaEnElArreglo(int[] numeros, int elemento, int limite){
+        for (int i = 0; i < limite; i++) {
+            if(numeros[i] == elemento){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static void llenarArreglo(Scanner sc, int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Ingrese el elemento en "+i+": ");
+            numeros[i] = sc.nextInt();
+        }
+    }
+    
+    public static void contarFrecuencia(int[] numeros){
+        for (int i = 0; i < numeros.length; i++) {
+            int elemento = numeros[i];
+            int contador = 0;
+            
+            if(!estaEnElArreglo(numeros, elemento, i)){
+                for (int j = 0; j < numeros.length; j++) {
+                    if(numeros[j] == elemento){
+                        contador++;
+                    }
+                }
+                if(contador == 1){
+                    System.out.println(elemento+" se repite "+contador+" vez");
+                } else {
+                    System.out.println(elemento+" se repite "+contador+" veces");
+                }
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("¿Cuantos elementos desea ingresar?: ");
+        int n = sc.nextInt();
+        
+        int numeros[] = new int[n];
+        llenarArreglo(sc, numeros);
+        
+        contarFrecuencia(numeros);
+    }   
+}
