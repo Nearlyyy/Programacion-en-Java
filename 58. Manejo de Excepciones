@@ -1,0 +1,32 @@
+Programa 58: Escriba un programa de Java que pida dos numeros entero y obtenga la division. Considerese que en caso de que el denominador sea 0 o alguno de los valores ingresados no sea 
+un numero, debe lanzar una excepción
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class TryCatch {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner (System.in);
+        int numerador, denominador;
+
+        try {
+            System.out.print("Ingrese un numerador entero: ");
+            numerador = sc.nextInt();
+
+            System.out.println("Se ha ingresado un "+numerador);
+
+            System.out.print("Ingrese un denonimador entero: ");
+            denominador = sc.nextInt();
+            
+            System.out.println("Se ha ingresado un "+denominador);
+            int resultado = numerador / denominador;
+
+            System.out.println("El resultado es "+resultado);
+            
+        } catch (InputMismatchException e){
+            System.out.println("El dato ingresado no es un número");
+        } catch (ArithmeticException e) {
+            System.out.println("No es posible dividir entre cero");
+        }
+    }
+}
