@@ -1,0 +1,70 @@
+Programa 59: Crear un programa que realice la encriptacion de una frase dada por el usuario
+
+package encriptacion;
+import java.util.Scanner;
+
+public class Encriptacion {
+    
+    public static void llenarConNumeros(int[] valores){
+        for (int i = 0; i < valores.length; i++) {
+            valores[i] = (int)(Math.random()*100);
+        }
+    }
+    
+    public static void encriptarFrase(String frase, int longitud, int[] valores){       
+        System.out.print("Palabra encriptada: ");
+        for (int i = 0; i < longitud; i++) {
+            int valorAscii = frase.charAt(i);
+            
+            if(i % 2 == 0){
+                System.out.print((valorAscii - valores[i])+" ");
+            } else {
+                System.out.print((valorAscii + valores[i])+" ");
+            }
+        }
+        System.out.println("");
+    }
+    
+    public static void desencriptarFrase (int longitud, int[] valores, Scanner sc){ 
+        int numeros[] = new int[longitud];
+        
+        for (int i = 0; i < longitud; i++) {
+            System.out.print("Ingrese el número "+(i+1)+": ");
+            numeros[i] = sc.nextInt();
+        }
+        
+        System.out.print("Palabra desencriptada: ");
+        char letra;
+        for (int i = 0; i < longitud; i++) {
+            if(i % 2 == 0){
+                letra = (char) (numeros[i] + valores[i]);
+                System.out.print(letra+"");
+            } else {
+                letra = (char) (numeros[i] - valores[i]);
+                System.out.print(letra+"");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.print("Ingrese una frase: ");
+        String frase = sc.nextLine();
+        
+        int longitud = frase.length();
+        int[] valores = new int[longitud];
+        llenarConNumeros(valores);
+        
+        encriptarFrase(frase, longitud, valores);
+        
+        System.out.print("¿Desea desencriptar la frase? (s / n): ");
+        char opcion = sc.nextLine().charAt(0);
+        
+        if(opcion == 's' || opcion == 'S'){
+            desencriptarFrase(longitud, valores, sc);
+        }
+        
+        System.out.print("\nFinalizando el programa");
+    }   
+}
