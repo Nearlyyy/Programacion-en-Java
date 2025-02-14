@@ -1,0 +1,36 @@
+package sumadiagonales;
+
+public class SumaDiagonales {
+    
+    /*
+    Programa 61: Diagonal de una matriz
+    
+    Dada la matriz
+    1, 2, 3, 4
+    5, 6, 7, 8
+    9, 10, 11, 12
+    
+    crear un programa que sume los elementos que no están en la diagonal principal
+    */
+    
+    static int sumarElementos(int[][] matriz){
+        int suma = 0;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if(i != j){
+                    suma += matriz[i][j];
+                }
+            }
+        }
+        return suma;
+    }
+
+    public static void main(String[] args) {
+        int[][] matriz = 
+        {{1, 2, 3, 4},
+         {5, 6, 7, 8},
+         {9, 10, 11, 12}};
+        
+        System.out.println("La suma de todos los elementos que no están en la diagonal es "+sumarElementos(matriz));
+    }   
+}
