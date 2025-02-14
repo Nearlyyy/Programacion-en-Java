@@ -1,0 +1,114 @@
+package votaciones;
+
+public class Votaciones {
+    
+    /*
+    Programa 60: Sistema de Votaciones
+    
+    Los votos en las últimas elecciones a alcalde en el pueblo x fueron los siguientes:
+    
+    Distrito	Candidato 1	Candidato 2	Candidato 3	Candidato 4
+    1		3		2		206		45		
+    2		4		20		6		16		
+    3		21		90		3		20		
+    4		9		540		6		14		
+    5		7		61		7		18
+    
+    Escribir un programa que haga las siguientes tareas:
+a) Imprimir la tabla anterior con cabeceras incluidas.
+b) Calcular e imprimir el número total de votos recibidos por cada candidato 
+   y el porcentaje del total de votos emitidos; visualizar el candidato más votado.
+c) Si algún candidato recibe más de 50% de los datos, imprimir un mensaje declarándole ganador.
+d) Si ningún candidato recibe más de 50% de los datos, imprimir el nombre de los dos
+candidatos más votados, que serán los que pasen a la segunda ronda de las elecciones.       
+    */
+    
+    // Votos totales y por candidatos
+    static int votosTotales(int[][] resultados){
+        int votosEnTotal = 0;
+        for (int i = 0; i < resultados.length; i++) {
+            for (int j = 1; j < resultados.length; j++) {
+                votosEnTotal += resultados[i][j];
+            }
+        }
+        return votosEnTotal;
+    }
+    
+    static int votosPorCandidato(int[][] resultados, int columna){
+        int votosCandidato = 0;
+        for (int i = 0; i < resultados.length; i++) {
+            votosCandidato += resultados[i][columna];
+        }
+        return votosCandidato;
+    }
+    
+    // Muestra la tabla de resultados con los votos por candidato en cada distrito
+    public static void mostrarTablaDeResultados(int[][] tabla){
+        System.out.println("Distrito\tCandidato 1\tCandidato 2\tCandidato 3\tCandidato 4");
+        for (int fila[]: tabla) {
+            for (int votos: fila) {
+                System.out.print(votos+"\t\t");
+            }
+            System.out.println("");
+        }
+    }
+    
+    // Cantidad de personas que sufragaron y los votos que obtuvo cada candidato
+    static void mostrarVotantes(int[][] resultados, int[] votantesPorCandidato){
+        System.out.println("Han sufragado "+votosTotales(resultados)+" personas");
+        System.out.println
+        ( "Candidato 1: "+votantesPorCandidato[0]+"\n"
+        + "Candidato 2: "+votantesPorCandidato[1]+"\n"
+        + "Candidato 3: "+votantesPorCandidato[2]+"\n"
+        + "Candidato 4: "+votantesPorCandidato[3]+"\n");
+    }
+    
+    // Se ordena el arreglo de resultados para saber que candidatos obtuvieron mas votos
+    static void seleccion (int[] datos){
+        int indiceMin, auxiliar, n = datos.length;
+        
+        for (int i = 0; i < n - 1; i++) {
+            indiceMin = i;
+            
+            for (int j = i + 1; j < n; j++) {
+                if (datos[j] > datos[indiceMin]) {
+                    indiceMin = j;
+                }
+            }
+            
+            auxiliar = datos[indiceMin]; 
+            datos[indiceMin] = datos[i];
+            datos[i] = auxiliar;
+        }
+    }    
+
+    static void ganoUnCandidato(int[] resultados, int[][] tabla){
+        for (int i = 0; i < resultados.length; i++) {
+            if(resultados[i] >= (votosTotales(tabla)) / 2){
+                System.out.println("El candidato con "+resultados[i]+" votos ganó la eleccion");
+                return;
+            }
+        }
+        System.out.println("Ningun candidato obtuvo más del 50% de votos");
+        System.out.println("El candidato con "+resultados[0]+" votos y el candidato con "+resultados[1]+" votos pasan a segunda ronda");
+    }
+    
+    public static void main(String[] args) {
+        int resultados[][] = 
+        {{1, 3, 2, 206, 45},
+         {2, 4, 20, 6, 16},
+         {3, 21, 90, 3, 20},
+         {4, 9, 540, 6, 14},
+         {5, 7, 61, 7, 18}};
+        
+        int[] votantesPorCandidato = {votosPorCandidato(resultados, 1), 
+                                      votosPorCandidato(resultados, 2), 
+                                      votosPorCandidato(resultados, 3), 
+                                      votosPorCandidato(resultados, 4)};
+        
+        mostrarTablaDeResultados(resultados);
+        mostrarVotantes(resultados, votantesPorCandidato);
+        seleccion(votantesPorCandidato);
+        ganoUnCandidato(votantesPorCandidato, resultados);
+    }    
+}
