@@ -1,0 +1,57 @@
+package sumatriangulos;
+
+public class SumaTriangulos {
+    
+    /*
+    Programa 62: 
+    Haga una aplicacion que calcule la suma del triangulo inferior mas el triangulo superior
+    de una matriz cuadrada, dejando el resultado en el triangulo inferior de otra matriz. La matriz 
+    resultante tendrá 0 en la diagonal y en el triangulo superior
+    
+    Ejemplo:
+    
+   1   2   3   4   5
+   6   7   8   9  10
+  11  12  13  14  15
+  16  17  18  19  20
+  21  22  23  24  25
+
+   0   0   0   0   0
+   8   0   0   0   0
+  14  20   0   0   0
+  20  26  32   0   0
+  26  32  38  44   0
+    */
+    
+    static void sumarTriangulos(int[][] matriz, int[][] nuevaMatriz){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = (i+1); j < matriz.length; j++) {
+                nuevaMatriz[j][i] = (matriz[i][j] + matriz[j][i]);
+            }
+        }
+    }
+    
+    static void imprimirMatriz(int[][] matriz){
+        for (int fila[]: matriz) {
+            for (int numero: fila) {
+                System.out.printf("%4d",numero);
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matriz =
+        {{1,2,3,4,5},
+         {6,7,8,9,10},
+         {11,12,13,14,15},
+         {16,17,18,19,20},
+         {21,22,23,24,25}};
+        int[][] nuevaMatriz = new int[matriz.length][matriz.length];
+        
+        sumarTriangulos(matriz, nuevaMatriz);
+        imprimirMatriz(matriz);
+        System.out.println("");
+        imprimirMatriz(nuevaMatriz);
+    }    
+}
